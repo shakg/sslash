@@ -6,3 +6,4 @@ sslash is an application that enables users to easily navigate around common tas
 - define group of url shortcuts to open workspace with multiple tabs. 
 - open app with specific settings  
 > This idea inspired by https://www.oslash.com 
+s
