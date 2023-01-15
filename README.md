@@ -1,5 +1,6 @@
 # sslash
-sslash is an application that enables users to easily navigate around common tasks. 
+> sslash is an application that enables users to easily navigate around common tasks. 
+
 ![sslash](https://user-images.githubusercontent.com/76657662/212531851-31cbdaea-d8f7-43ee-b4f5-0f684501e98b.png)
 
 
