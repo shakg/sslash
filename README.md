@@ -1,7 +1,8 @@
 # sslash
 sslash is an application that enables users to easily navigate around common tasks. 
+![sslash](https://user-images.githubusercontent.com/76657662/212531851-31cbdaea-d8f7-43ee-b4f5-0f684501e98b.png)
 
-![iPad mini 8 3 - 1](https://user-images.githubusercontent.com/76657662/212531735-641d267b-264b-4c71-bba4-9480f8cae6a0.png)
+
 ### key features
 - define text based shortcuts.
 - define url shortcuts 
