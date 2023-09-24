@@ -1,5 +1,5 @@
 # What is `sslash`
-sslash is a visual text alias tool. You know aliases from linux. This is it but it is visual. 
+> sslash is a visual text alias tool. You know aliases from linux. This is it but it is visual. But you can use it like text expander to store your favorite links, texts etc. 
 
 ![main-3](https://github.com/shakg/sslash/assets/76657662/2bcefb69-6f0d-4ef8-82f8-7ce571aa178f)
 
