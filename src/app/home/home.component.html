@@ -1,19 +1,19 @@
 <div class="w-full text-white flex flex-col gap-2 items-start p-5">
     <input type="text" id="searchBox" placeholder="Type alias name..." [(ngModel)]="searchText"
-        class="px-4 py-2 text-gray-500 w-full">
+        class="px-4 py-2 text-gray-500 w-full rounded">
     <div class="grid grid-cols-3 gap-1">
-        <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1"
+        <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 rounded"
             routerLink="new-alias">
             <img src="assets/icons/add.svg" alt="" srcset="" class="w-4 h-4">
             <p class="uppercase">Add new alias</p>
         </div>
         <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 cursor-not-allowed">
+            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 px-4 py-1 cursor-not-allowed rounded">
             <img src="assets/icons/export.svg" alt="" srcset="" class="w-4 h-4">
             <p class="uppercase">Export</p>
         </div>
         <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 cursor-not-allowed">
+            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 px-4 py-1 cursor-not-allowed rounded">
             <img src="assets/icons/import.svg" alt="" srcset="" class="w-4 h-4">
             <p class="uppercase">Import</p>
         </div>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="w-full items-center justify-center gap-2 flex flex-col mt-4">
-        <div class="bg-[#184B69] px-4 py-2 border border-[#195A80] w-full"
+        <div class="bg-[#184B69] px-4 py-2 border border-[#195A80] w-full rounded-lg"
             *ngFor="let alias of aliases | search:searchText">
             <div class="flex flex-row gap-1 justify-between items-center">
                 <p class="text-2xl font-bold">{{alias.name}}</p>
@@ -33,13 +33,13 @@
 
             <div class="flex flex-row gap-1 items-center justify-start">
                 <button
-                    class="bg-green-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-green-400"
+                    class="bg-green-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-green-400 rounded"
                     ngxClipboard [cbContent]="alias.text" (click)="confirmCopyToClipboard(alias)">
                     <img src="assets/icons/copy.svg" alt="" class="cursor-pointer" srcset="">
                     <p>{{copySuccess[alias.name] ? 'Copied' : 'Copy'}}</p>
                 </button>
                 <button
-                    class="bg-red-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-red-400" (click)="deleteAlias(alias)">
+                    class="bg-red-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-red-400 rounded" (click)="deleteAlias(alias)">
                     <img src="assets/icons/delete.svg" alt="" class="w-4 h-4" srcset="">
                     <p> Delete</p>
                 </button>
