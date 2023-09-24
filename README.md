@@ -1,6 +1,7 @@
 # What is `sslash`
 sslash is a visual text alias tool. You know aliases from linux. This is it but it is visual. 
-![main-2](https://github.com/shakg/sslash/assets/76657662/ff6041d4-105d-40f1-87dd-a0a10c14e57d)
+
+![main-3](https://github.com/shakg/sslash/assets/76657662/2bcefb69-6f0d-4ef8-82f8-7ce571aa178f)
 
 ### key features
 - Add text based aliases to localStorage
@@ -21,3 +22,4 @@ sslash is a visual text alias tool. You know aliases from linux. This is it but 
 - [ ] See `stdout` of running command
 - [ ] Add `stop` feature to running command 
 - [ ] Publish as a browser plugin ?
+
