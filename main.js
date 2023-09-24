@@ -4,7 +4,7 @@ const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 800,
@@ -20,7 +20,7 @@ function createWindow () {
   win.loadFile('./dist/frontend/index.html')
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -34,17 +34,6 @@ function createWindow () {
 
   globalShortcut.register('CommandOrControl+Alt+I', () => {
     if (win) {
-        // Wait for the DOM to be fully loaded
-        win.webContents.on('dom-ready', () => {
-          // Access the input field by its ID
-          win.webContents.executeJavaScript(`
-            const searchBox = document.getElementById('searchBox');
-            if (searchBox) {
-              searchBox.focus();
-            }
-          `);
-        });
-        
       if (win.isMinimized()) {
         // Restore the window if it's minimized
         win.restore();
@@ -52,7 +41,12 @@ function createWindow () {
       // Bring the window to the front
       win.focus();
 
-     
+      win.webContents.executeJavaScript(`
+        const searchBox = document.getElementById('searchBox');
+        if (searchBox) {
+          searchBox.focus();
+        }
+      `);
     }
   });
 }
