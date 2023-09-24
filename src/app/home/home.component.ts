@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-export type Alias={
-  name:string,
-  text:string
+export type Alias = {
+  name: string,
+  text: string
 };
 
 @Component({
@@ -11,27 +11,38 @@ export type Alias={
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  public searchText:string ="";
-  public aliases:Array<Alias> = [];
+  public searchText: string = "";
+  public aliases: Array<Alias> = [];
   public copySuccess: any = {};
-  constructor(){
-    const _aliases = localStorage.getItem("aliases")
-    if(_aliases){
-      this.aliases = JSON.parse(_aliases);
-    }
+  constructor() {
+    this.aliases = this.getAlisesFromLocalStorage();
   }
 
-  confirmCopyToClipboard(alias:any){
-    navigator.clipboard.readText().then((clipboardText:string)=>{
-      if(alias.text === clipboardText){
+  getAlisesFromLocalStorage() {
+    const _aliases = localStorage.getItem("aliases")
+    if (_aliases) {
+      return JSON.parse(_aliases);
+    }
+  }
+  confirmCopyToClipboard(alias: any) {
+    navigator.clipboard.readText().then((clipboardText: string) => {
+      if (alias.text === clipboardText) {
         this.copySuccess[alias.name] = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.copySuccess[alias.name] = false;
-        },500)
-      }else{
+        }, 1500)
+      } else {
         this.copySuccess[alias.name] = false;
       }
     })
   }
-  
+
+  deleteAlias(alias: any) {
+    const aliases = this.getAlisesFromLocalStorage();
+    const newAliases = aliases.filter((x: any) => x.name !== alias.name);
+    console.log("🚀 ~ file: home.component.ts:44 ~ HomeComponent ~ deleteAlias ~ newAliases:", newAliases)
+    localStorage.setItem("aliases", JSON.stringify(newAliases));
+    this.aliases = this.getAlisesFromLocalStorage();
+  }
+
 }

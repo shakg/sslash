@@ -34,6 +34,17 @@ function createWindow () {
 
   globalShortcut.register('CommandOrControl+Alt+I', () => {
     if (win) {
+        // Wait for the DOM to be fully loaded
+        win.webContents.on('dom-ready', () => {
+          // Access the input field by its ID
+          win.webContents.executeJavaScript(`
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+              searchBox.focus();
+            }
+          `);
+        });
+        
       if (win.isMinimized()) {
         // Restore the window if it's minimized
         win.restore();
@@ -41,16 +52,7 @@ function createWindow () {
       // Bring the window to the front
       win.focus();
 
-       // Wait for the DOM to be fully loaded
-       win.webContents.on('dom-ready', () => {
-        // Access the input field by its ID
-        win.webContents.executeJavaScript(`
-          const searchBox = document.getElementById('searchBox');
-          if (searchBox) {
-            searchBox.focus();
-          }
-        `);
-      });
+     
     }
   });
 }
