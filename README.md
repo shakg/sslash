@@ -1,20 +1,22 @@
-# sslash
-> sslash is an application that enables users to easily navigate around common texts. 
-
-![main](https://github.com/shakg/sslash/assets/76657662/b873bc2c-d9e3-485b-b9af-514f29636e7e)
-
+# What is `sslash`
+sslash is a visual text alias tool. You know aliases from linux. This is it but it is visual. 
+![main-2](https://github.com/shakg/sslash/assets/76657662/ff6041d4-105d-40f1-87dd-a0a10c14e57d)
 
 ### key features
-- define text based shortcuts.
-- define url shortcuts 
-- define group of url shortcuts to open workspace with multiple tabs. 
-- open app with specific settings  
-> This idea inspired by https://www.oslash.com 
+- Add text based aliases to localStorage
+- See text aliases from localStroge
+- Delete text aliases
+- Bring to front with CTRL + ALT + I
+- Fuzzy finding search
+- Copy to clipboard
 
 ### roadmap 
- - [x] design main parts of the application
- - [ ] generate initial structure of the application
- - [ ] add text based shortcut feature
- - [ ] add always listening shortcut manager.
-   > users will run the application and whether the app is in fore window or not, keyboard shortcut listener must be active.
-
+- [ ] Add contribution docs.
+- [ ] Test on linux and mac
+- [ ] Edit aliases
+- [ ] Write types in angular side
+- [ ] Add backend frontend communication
+- [ ] Add runners aka add execute shell on backend
+- [ ] See `stdout` of running command
+- [ ] Add `stop` feature to running command 
+- [ ] Publish as a browser plugin ?
