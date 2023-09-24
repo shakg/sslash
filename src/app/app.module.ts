@@ -7,6 +7,7 @@ import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
 import { AddNewAliasComponent } from './add-new-alias/add-new-alias.component';
 import { HomeComponent } from './home/home.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
