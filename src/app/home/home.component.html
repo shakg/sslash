@@ -1,5 +1,5 @@
-<div class="bg-[#033F63] w-full h-screen text-white flex flex-col gap-2 items-start p-5">
-    <input type="text" placeholder="Type alias name..." [(ngModel)]="searchText" class="px-4 py-2 text-gray-500 w-full">
+<div class="bg-[#033F63] w-full h-full text-white flex flex-col gap-2 items-start p-5">
+    <input type="text" id="searchBox" placeholder="Type alias name..." [(ngModel)]="searchText" class="px-4 py-2 text-gray-500 w-full">
     <div class="grid grid-cols-3 gap-1 w-full">
         <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1"
             routerLink="new-alias">
@@ -7,12 +7,12 @@
             <p class="uppercase">Add new alias</p>
         </div>
         <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1">
+            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 cursor-not-allowed">
             <img src="assets/icons/export.svg" alt="" srcset="" class="w-4 h-4">
             <p class="uppercase">Export</p>
         </div>
         <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1">
+            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 cursor-not-allowed">
             <img src="assets/icons/import.svg" alt="" srcset="" class="w-4 h-4">
             <p class="uppercase">Import</p>
         </div>

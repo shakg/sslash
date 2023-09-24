@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,7 +11,9 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    resizable: false,     // Prevent resizing
+    fullscreenable: false // Prevent full screen mode
   })
 
   // and load the index.html of the app.
@@ -26,7 +28,29 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null
-  })
+  });
+
+  globalShortcut.register('CommandOrControl+Alt+I', () => {
+    if (win) {
+      if (win.isMinimized()) {
+        // Restore the window if it's minimized
+        win.restore();
+      }
+      // Bring the window to the front
+      win.focus();
+
+       // Wait for the DOM to be fully loaded
+       win.webContents.on('dom-ready', () => {
+        // Access the input field by its ID
+        win.webContents.executeJavaScript(`
+          const searchBox = document.getElementById('searchBox');
+          if (searchBox) {
+            searchBox.focus();
+          }
+        `);
+      });
+    }
+  });
 }
 
 // This method will be called when Electron has finished
