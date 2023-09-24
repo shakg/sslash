@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "sslash",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,6 +17,9 @@
     },
     "win": {
       "target": "nsis"
+    },
+    "linux":{
+      "target": "AppImage"
     }
   },
   "main": "main.js",
