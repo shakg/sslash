@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut } = require('electron')
+const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -29,6 +29,8 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   });
+
+  Menu.setApplicationMenu(null);
 
   globalShortcut.register('CommandOrControl+Alt+I', () => {
     if (win) {
