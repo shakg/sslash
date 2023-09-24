@@ -12,6 +12,7 @@ sslash is a visual text alias tool. You know aliases from linux. This is it but 
 
 ### roadmap 
 - [ ] Add contribution docs.
+- [ ] Make Export import functions work
 - [ ] Test on linux and mac
 - [ ] Edit aliases
 - [ ] Write types in angular side
