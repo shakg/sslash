@@ -1,7 +1,8 @@
+<router-outlet></router-outlet>
 <div class="bg-[#033F63] w-full h-screen text-white flex flex-col gap-2 items-start p-5">
   <input type="text" placeholder="Type alias name..."  [(ngModel)]="searchText" class="px-4 py-2 text-gray-500 w-full">
   <div class="grid grid-cols-3 gap-1 w-full">
-    <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1">
+    <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1" routerLink="new-alias">
       <img src="assets/icons/add.svg" alt="" srcset="" class="w-4 h-4">
       <p class="uppercase">Add new alias</p>
     </div>
@@ -26,9 +27,4 @@
       <p class="text-gray-400">{{alias.text}}</p>
     </div>
   </div>
-  
-  <div class="">
-
-  </div>
-  
 </div>
