@@ -13,7 +13,6 @@ export class AddNewAliasComponent {
       alert("You should fill all the inputs!");
       return;
     }
-
     const alias = {
       name: this.name,
       text:this.text
