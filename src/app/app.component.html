@@ -1,10 +1,21 @@
-<div class="bg-[#033F63] w-full h-screen text-white flex flex-col gap-2 justify-between items-start p-5">
+<div class="bg-[#033F63] w-full h-screen text-white flex flex-col gap-2 items-start p-5">
   <div class="flex flex-row gap-1 w-full justify-between items-center">
     <div class="w-11/12">
-      <input type="text" placeholder="Type alias name..." class="px-4 py-2 text-gray-500 w-full">
+      <input type="text" placeholder="Type alias name..."  [(ngModel)]="searchText" class="px-4 py-2 text-gray-500 w-full">
     </div>
     <div class="w-1/12">
       <img src="assets/icons/add.svg" alt="" srcset="" class="w-12 h-10">
     </div>
   </div>
+
+  <div class="w-full grid grid-cols-2 items-center justify-center gap-2">
+    <div class="bg-[#184B69] rounded px-4 py-2 border border-[#195A80]" *ngFor="let alias of aliases | search:searchText">
+      {{alias.name}}
+    </div>
+  </div>
+  
+  <div class="">
+
+  </div>
+  
 </div>
