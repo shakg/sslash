@@ -26,23 +26,40 @@
             <div class="flex flex-row gap-1 justify-between items-center">
                 <p class="text-2xl font-bold">{{alias.name}}</p>
                 <div class="flex flex-row gap-2 items-center justify-center">
-
-                </div>
-            </div>
-            <p class="text-gray-400">{{alias.text}}</p>
-
-            <div class="flex flex-row gap-1 items-center justify-start">
-                <button
-                    class="bg-green-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-green-400 rounded"
+                    <button
+                    class="text-white flex flex-row gap-2 items-center justify-center px-4 py-1 rounded bg-green-500"
                     ngxClipboard [cbContent]="alias.text" (click)="confirmCopyToClipboard(alias)">
                     <img src="assets/icons/copy.svg" alt="" class="cursor-pointer" srcset="">
                     <p>{{copySuccess[alias.name] ? 'Copied' : 'Copy'}}</p>
                 </button>
+
                 <button
-                    class="bg-red-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 mt-4 hover:bg-red-400 rounded" (click)="deleteAlias(alias)">
+                    class="text-white flex flex-row gap-2 items-center justify-center px-4 py-1 rounded bg-red-500"
+                    (click)="deleteAlias(alias)">
                     <img src="assets/icons/delete.svg" alt="" class="w-4 h-4" srcset="">
-                    <p> Delete</p>
+                    <p>Delete</p>
                 </button>
+                </div>
+            </div>
+            <p class="text-gray-400">{{alias.text}}</p>
+
+            <div class="flex flex-row gap-1 items-center justify-start my-2 pt-2">
+                <button
+                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded"
+                    (click)="openInBrowser(alias)">
+                    <img src="assets/icons/browser.svg" alt="" class="cursor-pointer" srcset="">
+                    <p>Open In Browser</p>
+                </button>
+
+                <button
+                    disabled
+                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded cursor-not-allowed"
+                    (click)="openInShell(alias)">
+                    <img src="assets/icons/shell.svg" alt="" class="cursor-pointer" srcset="">
+                    <p>Open In Shell</p>
+                </button>
+
+                
             </div>
         </div>
     </div>

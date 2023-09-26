@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IpcRenderer } from 'electron';
+
 
 export type Alias = {
   name: string,
@@ -14,7 +16,19 @@ export class HomeComponent {
   public searchText: string = "";
   public aliases: Array<Alias> = [];
   public copySuccess: any = {};
+  private _ipc: IpcRenderer | undefined;
+
   constructor() {
+    if (window.require) {
+      try {
+        this._ipc = window.require('electron').ipcRenderer;
+        console.log("🚀 ~ file: home.component.ts:25 ~ HomeComponent ~ constructor ~ this._ipc:", this._ipc)
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn('Electron\'s IPC was not loaded');
+    }
     this.aliases = this.getAlisesFromLocalStorage();
   }
 
@@ -40,9 +54,19 @@ export class HomeComponent {
   deleteAlias(alias: any) {
     const aliases = this.getAlisesFromLocalStorage();
     const newAliases = aliases.filter((x: any) => x.name !== alias.name);
-    console.log("🚀 ~ file: home.component.ts:44 ~ HomeComponent ~ deleteAlias ~ newAliases:", newAliases)
     localStorage.setItem("aliases", JSON.stringify(newAliases));
     this.aliases = this.getAlisesFromLocalStorage();
+  }
+
+  openInShell(alias:any){
+    this._ipc?.send('open-in-shell', alias.text);
+  }
+
+  openInBrowser(alias:any){
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if(urlRegex.test(alias.text)){
+      this._ipc?.send('open-in-browser', alias.text);
+    }
   }
 
 }

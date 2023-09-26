@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
+const { app, BrowserWindow, globalShortcut, Menu, ipcMain, shell } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -10,7 +10,8 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     },
     resizable: false,     // Prevent resizing
     fullscreenable: false // Prevent full screen mode
@@ -48,6 +49,16 @@ function createWindow() {
         }
       `);
     }
+  });
+
+
+  ipcMain.on('open-in-browser', (event, data) => {
+    shell.openExternal(data)
+  });
+
+  ipcMain.on('open-in-shell', (event, data) => {
+    console.log('Received message from Angular: open-in-shell', data);
+    // Handle the data as needed
   });
 }
 
