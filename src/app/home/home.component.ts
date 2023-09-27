@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { IpcRenderer } from 'electron';
-
 
 export type Alias = {
   name: string,
@@ -18,7 +17,9 @@ export class HomeComponent {
   public copySuccess: any = {};
   private _ipc: IpcRenderer | undefined;
 
-  constructor() {
+  public shellResults: any = {}
+
+  constructor(private cdr:ChangeDetectorRef) {
     if (window.require) {
       try {
         this._ipc = window.require('electron').ipcRenderer;
@@ -59,6 +60,13 @@ export class HomeComponent {
   }
 
   openInShell(alias:any){
+    this._ipc?.on(alias.text, (_,message)=>{
+      
+      const consoleOutput = document.getElementById(alias.name);
+      consoleOutput!.innerHTML += this.formatLineBreaks(message);
+      console.log(this.formatLineBreaks(message));
+      this.cdr.detectChanges();
+    })
     this._ipc?.send('open-in-shell', alias.text);
   }
 
@@ -67,6 +75,12 @@ export class HomeComponent {
     if(urlRegex.test(alias.text)){
       this._ipc?.send('open-in-browser', alias.text);
     }
+  }
+
+  formatLineBreaks(input: string): string {
+    // Replace '\r\n' line breaks with '<br>' tags
+    const formattedString = input.replace(/\r\n/g, '<br>');
+    return formattedString;
   }
 
 }

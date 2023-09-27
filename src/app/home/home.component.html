@@ -52,14 +52,17 @@
                 </button>
 
                 <button
-                    disabled
-                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded cursor-not-allowed"
+                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded"
                     (click)="openInShell(alias)">
                     <img src="assets/icons/shell.svg" alt="" class="cursor-pointer" srcset="">
                     <p>Open In Shell</p>
                 </button>
 
                 
+            </div>
+
+            <div class="m-3 p-2 bg-white text-black rounded max-h-[300px] overflow-scroll" [id]="alias.name">
+               
             </div>
         </div>
     </div>

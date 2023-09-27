@@ -1,4 +1,6 @@
-const { app, BrowserWindow, globalShortcut, Menu, ipcMain, shell } = require('electron')
+const { app, BrowserWindow, globalShortcut, Menu, ipcMain, shell } = require('electron');
+const { exec } = require('child_process');
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -31,7 +33,7 @@ function createWindow() {
     win = null
   });
 
-  Menu.setApplicationMenu(null);
+  //Menu.setApplicationMenu(null);
 
   globalShortcut.register('CommandOrControl+Alt+I', () => {
     if (win) {
@@ -58,7 +60,14 @@ function createWindow() {
 
   ipcMain.on('open-in-shell', (event, data) => {
     console.log('Received message from Angular: open-in-shell', data);
-    // Handle the data as needed
+    exec(data, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+
+      win.webContents.send(data, stdout);
+    }); 
   });
 }
 
