@@ -1,68 +1,34 @@
-<div class="w-full text-white flex flex-col gap-2 items-start p-5">
-    <input type="text" id="searchBox" placeholder="Type alias name..." [(ngModel)]="searchText"
-        class="px-4 py-2 text-gray-500 w-full rounded">
-    <div class="grid grid-cols-3 gap-1">
-        <div class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 cursor-pointer px-4 py-1 rounded"
-            routerLink="new-alias">
-            <img src="assets/icons/add.svg" alt="" srcset="" class="w-4 h-4">
-            <p class="uppercase">Add new alias</p>
-        </div>
-        <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 px-4 py-1 cursor-not-allowed rounded">
-            <img src="assets/icons/export.svg" alt="" srcset="" class="w-4 h-4">
-            <p class="uppercase">Export</p>
-        </div>
-        <div
-            class="flex flex-row gap-1 items-center justify-center border border-white hover:border-gray-400 px-4 py-1 cursor-not-allowed rounded">
-            <img src="assets/icons/import.svg" alt="" srcset="" class="w-4 h-4">
-            <p class="uppercase">Import</p>
-        </div>
-
+<div class="w-full text-black flex flex-col gap-2 items-start p-5">
+    <div class="flex flex-row items-center justify-start gap-2 w-full">
+        <input type="text" id="searchBox" placeholder="Search..." [(ngModel)]="searchText"
+            class="px-4 py-2 text-gray-500 w-full rounded border border-gray-300 w-[95%]">
+        <img src="assets/icons/settings.svg" alt="" srcset="">
     </div>
 
+
     <div class="w-full items-center justify-center gap-2 flex flex-col mt-4">
-        <div class="bg-[#184B69] px-4 py-2 border border-[#195A80] w-full rounded-lg"
+        <div class=" px-4 py-2 border border-white border-b-gray-300 w-full"
             *ngFor="let alias of aliases | search:searchText">
             <div class="flex flex-row gap-1 justify-between items-center">
                 <p class="text-2xl font-bold">{{alias.name}}</p>
                 <div class="flex flex-row gap-2 items-center justify-center">
-                    <button
-                    class="text-white flex flex-row gap-2 items-center justify-center px-4 py-1 rounded bg-green-500"
-                    ngxClipboard [cbContent]="alias.text" (click)="confirmCopyToClipboard(alias)">
-                    <img src="assets/icons/copy.svg" alt="" class="cursor-pointer" srcset="">
-                    <p>{{copySuccess[alias.name] ? 'Copied' : 'Copy'}}</p>
-                </button>
 
-                <button
-                    class="text-white flex flex-row gap-2 items-center justify-center px-4 py-1 rounded bg-red-500"
-                    (click)="deleteAlias(alias)">
-                    <img src="assets/icons/delete.svg" alt="" class="w-4 h-4" srcset="">
-                    <p>Delete</p>
-                </button>
                 </div>
             </div>
             <p class="text-gray-400">{{alias.text}}</p>
 
-            <div class="flex flex-row gap-1 items-center justify-start my-2 pt-2">
-                <button
-                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded"
-                    (click)="openInBrowser(alias)">
+            <div class="flex flex-row gap-3 items-center justify-start my-2 pt-2">
+                <button ngxClipboard [cbContent]="alias.text" (click)="confirmCopyToClipboard(alias)">
+                    <img src="assets/icons/copy.svg" alt="" class="cursor-pointer" srcset="">
+                </button>
+
+                <button (click)="openInBrowser(alias)">
                     <img src="assets/icons/browser.svg" alt="" class="cursor-pointer" srcset="">
-                    <p>Open In Browser</p>
                 </button>
 
-                <button
-                    class="text-white flex flex-row gap-2 items-center justify-center border border-gray-400 px-4 py-1 hover:border-gray-300 rounded"
-                    (click)="openInShell(alias)">
-                    <img src="assets/icons/shell.svg" alt="" class="cursor-pointer" srcset="">
-                    <p>Open In Shell</p>
+                <button>
+                    <img src="assets/icons/share.svg" alt="" class="cursor-pointer" srcset="">
                 </button>
-
-                
-            </div>
-
-            <div class="m-3 p-2 bg-white text-black rounded max-h-[300px] overflow-scroll" [id]="alias.name">
-               
             </div>
         </div>
     </div>

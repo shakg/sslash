@@ -58,17 +58,6 @@ function createWindow() {
     shell.openExternal(data)
   });
 
-  ipcMain.on('open-in-shell', (event, data) => {
-    console.log('Received message from Angular: open-in-shell', data);
-    exec(data, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-
-      win.webContents.send(data, stdout);
-    }); 
-  });
 }
 
 // This method will be called when Electron has finished

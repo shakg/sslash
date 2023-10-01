@@ -59,28 +59,10 @@ export class HomeComponent {
     this.aliases = this.getAlisesFromLocalStorage();
   }
 
-  openInShell(alias:any){
-    this._ipc?.on(alias.text, (_,message)=>{
-      
-      const consoleOutput = document.getElementById(alias.name);
-      consoleOutput!.innerHTML += this.formatLineBreaks(message);
-      console.log(this.formatLineBreaks(message));
-      this.cdr.detectChanges();
-    })
-    this._ipc?.send('open-in-shell', alias.text);
-  }
-
   openInBrowser(alias:any){
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     if(urlRegex.test(alias.text)){
       this._ipc?.send('open-in-browser', alias.text);
     }
   }
-
-  formatLineBreaks(input: string): string {
-    // Replace '\r\n' line breaks with '<br>' tags
-    const formattedString = input.replace(/\r\n/g, '<br>');
-    return formattedString;
-  }
-
 }
