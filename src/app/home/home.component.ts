@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { IpcRenderer } from 'electron';
+import { NotificationService } from '../notification.service';
 
 export type Alias = {
   name: string,
@@ -19,7 +20,7 @@ export class HomeComponent {
 
   public shellResults: any = {}
 
-  constructor(private cdr:ChangeDetectorRef) {
+  constructor(private notificationService:NotificationService) {
     if (window.require) {
       try {
         this._ipc = window.require('electron').ipcRenderer;
@@ -40,6 +41,7 @@ export class HomeComponent {
     }
   }
   confirmCopyToClipboard(alias: any) {
+    this.notificationService.info("Copied text!");
     navigator.clipboard.readText().then((clipboardText: string) => {
       if (alias.text === clipboardText) {
         this.copySuccess[alias.name] = true;
