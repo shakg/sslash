@@ -2,7 +2,7 @@
     <div class="flex flex-row items-center justify-start gap-2 w-full">
         <input type="text" id="searchBox" placeholder="Search..." [(ngModel)]="searchText"
             class="px-4 py-2 text-gray-500 w-full rounded border border-gray-300 w-[95%]">
-        <img src="assets/icons/settings.svg" alt="" srcset="">
+        <img src="assets/icons/settings.svg" alt="" srcset="" routerLink="/settings" class="cursor-pointer">
     </div>
 
 
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="flex flex-row items-center justify-center gap-1 text-sm">
-                        <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400" routerLink="/new-alias">Edit</button>
+                        <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400" [routerLink]="['/new-alias',alias.name]">Edit</button>
                         <button class="px-4 py-1 rounded bg-red-500 hover:bg-red-400 text-white" (click)="deleteAlias(alias)">Delete</button>
                     </div>
                     
