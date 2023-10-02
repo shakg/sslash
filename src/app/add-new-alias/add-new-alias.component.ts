@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Alias } from '../../../libs/shared/types/alias';
 
 @Component({
   selector: 'app-add-new-alias',
@@ -20,7 +21,7 @@ export class AddNewAliasComponent {
     if(!aliases){
       localStorage.setItem("aliases", JSON.stringify([alias]))
     }else{
-      const aliases_array:Array<any> = JSON.parse(aliases);
+      const aliases_array:Array<Alias> = JSON.parse(aliases);
       aliases_array.push(alias);
       localStorage.setItem("aliases", JSON.stringify(aliases_array));
     }

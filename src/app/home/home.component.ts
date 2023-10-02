@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { IpcRenderer } from 'electron';
 import { NotificationService } from '../notification.service';
+import { Alias } from '../../../libs/shared/types/alias';
 
-export type Alias = {
-  name: string,
-  text: string
-};
 
 @Component({
   selector: 'app-home',
@@ -15,16 +12,16 @@ export type Alias = {
 export class HomeComponent {
   public searchText: string = "";
   public aliases: Array<Alias> = [];
+
+  // TODO: write proper types
   public copySuccess: any = {};
   private _ipc: IpcRenderer | undefined;
 
-  public shellResults: any = {}
 
   constructor(private notificationService:NotificationService) {
     if (window.require) {
       try {
         this._ipc = window.require('electron').ipcRenderer;
-        console.log("🚀 ~ file: home.component.ts:25 ~ HomeComponent ~ constructor ~ this._ipc:", this._ipc)
       } catch (e) {
         throw e;
       }
@@ -40,7 +37,7 @@ export class HomeComponent {
       return JSON.parse(_aliases);
     }
   }
-  confirmCopyToClipboard(alias: any) {
+  confirmCopyToClipboard(alias: Alias) {
     this.notificationService.info("Copied text!");
     navigator.clipboard.readText().then((clipboardText: string) => {
       if (alias.text === clipboardText) {
@@ -54,14 +51,19 @@ export class HomeComponent {
     })
   }
 
-  deleteAlias(alias: any) {
-    const aliases = this.getAlisesFromLocalStorage();
-    const newAliases = aliases.filter((x: any) => x.name !== alias.name);
-    localStorage.setItem("aliases", JSON.stringify(newAliases));
-    this.aliases = this.getAlisesFromLocalStorage();
+  deleteAlias(alias: Alias) {
+    try {
+      const aliases = this.getAlisesFromLocalStorage();
+      const newAliases = aliases.filter((x:Alias) => x.name !== alias.name);
+      localStorage.setItem("aliases", JSON.stringify(newAliases));
+      this.aliases = this.getAlisesFromLocalStorage();
+      this.notificationService.info("Deleted alias");
+    } catch (error) {
+      this.notificationService.error("Something bad happened during delete operation! Please try again.")
+    }
   }
 
-  openInBrowser(alias:any){
+  openInBrowser(alias:Alias){
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     if(urlRegex.test(alias.text)){
       this._ipc?.send('open-in-browser', alias.text);

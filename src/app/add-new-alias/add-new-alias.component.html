@@ -1,12 +1,12 @@
-<div class="bg-[#033F63] w-full h-screen text-white flex flex-col gap-2 items-start p-5">
-    <button routerLink="" class="px-4 py-2 border border-gray-300 hover:border-gray-400 gap-2 rounded flex flex-row items-center justify-center">
+<div class="w-full h-screen flex flex-col gap-2 items-start p-5">
+    <button routerLink="" class="px-4 py-1 border border-gray-500 hover:border-gray-400 gap-2 rounded flex flex-row items-center justify-center">
         <img src="assets/icons/back.svg" alt="" srcset="" class="w-4 h-4">
         <p>Main Page</p> 
     </button>
     <p>Name</p>
-    <input type="text" placeholder="" class="px-4 py-2 w-full text-gray-600 rounded" [(ngModel)]="name">
+    <input type="text" placeholder="" class="px-4 py-2 w-full text-gray-600 border border-gray-500 rounded" [(ngModel)]="name">
     <p>Text</p>
-    <textarea rows="15" class="w-full text-gray-600 px-4 py-2 rounded" [(ngModel)]="text"></textarea>
+    <textarea rows="15" class="w-full text-gray-600 px-4 py-2 rounded border border-gray-500" [(ngModel)]="text"></textarea>
 
     <button class="bg-green-500 text-white flex flex-row gap-2 items-center justify-center px-4 py-1 hover:bg-green-400 rounded" routerLink="" (click)="saveNewAlias()">
         Save
