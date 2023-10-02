@@ -1,5 +1,4 @@
 const { app, BrowserWindow, globalShortcut, Menu, ipcMain, shell } = require('electron');
-const { exec } = require('child_process');
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -32,10 +31,10 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
   });
+  
+  Menu.setApplicationMenu(null);
 
-  //Menu.setApplicationMenu(null);
-
-  globalShortcut.register('CommandOrControl+Alt+I', () => {
+  globalShortcut.register('CommandOrControl+Space', () => {
     if (win) {
       if (win.isMinimized()) {
         // Restore the window if it's minimized
@@ -45,10 +44,10 @@ function createWindow() {
       win.focus();
 
       win.webContents.executeJavaScript(`
-        const searchBox = document.getElementById('searchBox');
-        if (searchBox) {
-          searchBox.focus();
-        }
+        if(!searchBox){
+          const searchBox = document.getElementById('searchBox');
+        }        
+        searchBox.focus();
       `);
     }
   });
