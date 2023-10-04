@@ -1,6 +1,19 @@
-<div class="flex flex-col items-center justify-center gap-2 p-5">
-    <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400" [routerLink]="['/new-alias','']">
+<div class="flex flex-col items-start justify-center gap-2 p-5">
+    <button routerLink="" class="px-4 py-1 border border-gray-500 hover:border-gray-400 gap-2 rounded flex flex-row items-center justify-center mb-2">
+        <img src="assets/icons/back.svg" alt="" srcset="" class="w-4 h-4">
+        <p>Main Page</p> 
+    </button>
+    <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400 w-full" [routerLink]="['/new-alias','']">
         Add new alias
     </button>
-
+    <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400 w-full" (click)="export()">
+        Export
+    </button>
+    <div class=" w-full">
+        <input type="file" (change)="import($event)" #fileInput class="hidden">
+        <button class="px-4 py-1 rounded border border-gray-500 hover:border-gray-400 w-full" (click)="fileInput.click()">
+            Import
+        </button>
+    </div>
+    
 </div>
