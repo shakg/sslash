@@ -18,11 +18,11 @@ With implementation of central backend, users and teams can easily share links, 
 
 ### Short term roadmap 
 - [ ] Add contribution docs.
-- [x] Make Export import functions work
-- [x] Test on linux and mac
-- [x] Edit aliases
-- [x] Write types in angular side
-- [x] Add backend frontend communication
+- [x] ~Make Export import functions work~
+- [x] ~Test on linux and mac~
+- [x] ~Edit aliases~
+- [x] ~Write types in angular side~
+- [x] ~Add backend frontend communication~
 - [ ] Add central backend to share across teams and/or other users
 - [ ] add sign in / auth
 
