@@ -1,4 +1,5 @@
 const { app, BrowserWindow, globalShortcut, Menu, ipcMain, shell } = require('electron');
+const { writeFile, readFile } = require('original-fs');
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -22,7 +23,7 @@ function createWindow() {
   win.loadFile('./dist/frontend/index.html')
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -31,7 +32,7 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
   });
-  
+
   Menu.setApplicationMenu(null);
 
   globalShortcut.register('CommandOrControl+Space', () => {
@@ -57,6 +58,22 @@ function createWindow() {
     shell.openExternal(data)
   });
 
+
+  ipcMain.on('export-aliases', (event, data) => {
+
+    writeFile(`${Date.now()}-aliases.json`, JSON.stringify(data), (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    })
+  })
+
+  ipcMain.on('import-aliases', (event, _data) => {
+
+    readFile(_data, (err, data) => {
+      console.log("🚀 ~ file: main.js:75 ~ readFile ~ data:", data)
+      win.webContents.send('import-aliases-response', data.toString());
+    })
+  })
 }
 
 // This method will be called when Electron has finished
